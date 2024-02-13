@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction for Retention Analysis</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: url('../static/images/display_image.png');
+            background-size: cover; 
+        }
+        .navbar{
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            height: 50px;
+            background-color: #0b1d27;
+            padding: 5px;
+        }
+        .navbar a{
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            margin-right: 20px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .navbar a:hover{
+            color: #77a278;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 30px;
+            padding: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            background-color: whitesmoke;
+        }
+        .container form{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            column-gap: 30px;
+            row-gap: 15px;
+            margin-top: 25px;
+            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 90%;
+        }
+        .container form select{
+            margin-top: 5px;
+            padding: 5px;
+            width: 100%;
+        }
+        .container form input{
+            margin-top: 5px;
+            padding: 5px;
+            width: 95%;
+        }
+        .btn{
+            background-color: #77a278;
+            color: white;
+            border: 0;
+            font-weight: bold;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/prediction">Churn Prediction</a>
+    </nav>
+    <div class="container">
+        <h1>Customer Churn Prediction for Retention Analysis</h1>
+        <form action="/predict" method="POST">
+            <span>
+                <label for="customerId">Customer ID</label><br/>
+                <input type="text" name="customerId" id="customerId"/><br/>
+            </span>
+            <span>
+                <label for="gender">Gender</label><br/>
+                <select name="gender" id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="sr_citizen">Senior Citizen</label><br/>
+                <select name="sr_citizen" id="sr_citizen">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="partner">Partner</label><br/>
+                <select name="partner" id="partner">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="dependents">Dependents</label><br/>
+                <select name="dependents" id="dependents">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="tenure">Tenure</label><br/>
+                <input type="number" name="tenure" id="tenure"/><br/>
+            </span>
+            <span>
+                <label for="phone_service">Phone Service</label><br/>
+                <select name="phone_service" id="phone_service">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="multiple_lines">Multiple Lines</label><br/>
+                <select name="multiple_lines" id="multiple_lines">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="no">No Phone Service</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="internet_service">Internet Service</label><br/>
+                <select name="internet_service" id="internet_service">
+                    <option value="dsl">DSL</option>
+                    <option value="fiber_optic">Fiber optic</option>
+                    <option value="no">No Internet Service</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="online_security">Online Security</label><br/>
+                <select name="online_security" id="online_security">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="no">No Internet Service</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="online_backup">Online Backup</label><br/>
+                <select name="online_backup" id="online_backup">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="no">No Internet Service</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="device_protection">Device Protection</label><br/>
+                <select name="device_protection" id="device_protection">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="no">No Internet Service</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="tech_support">Tech Support</label><br/>
+                <select name="tech_support" id="tech_support">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="no">No Internet Service</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="streaming_tv">Streaming TV</label><br/>
+                <select name="streaming_tv" id="streaming_tv">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="no">No Internet Service</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="streaming_movies">Streaming Movies</label><br/>
+                <select name="streaming_movies" id="streaming_movies">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="no">No Internet Service</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="paperless_billing">Paperless Billing</label><br/>
+                <select name="paperless_billing" id="paperless_billing">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="monthly_charges">Monthly Charges</label><br/>
+                <input type="text" name="monthly_charges" id="monthly_charges" pattern="[0-9]*[.,]?[0-9]*"/><br/>
+            </span>
+            <span>
+                <label for="total_charges">Total Charges</label><br/>
+                <input type="text" name="total_charges" id="total_charges" pattern="[0-9]*[.,]?[0-9]*"/><br/>
+            </span>
+            <span>
+                <label for="contract">Contract</label><br/>
+                <select name="contract" id="contract">
+                    <option value="month-to-month">Month-to-Month</option>
+                    <option value="one_year">One year</option>
+                    <option value="two_year">Two year</option>
+                </select><br/>
+            </span>
+            <span>
+                <label for="payment_method">Payment Method</label><br/>
+                <select name="payment_method" id="payment_method">
+                    <option value="bank_transfer">Bank transfer (automatic)</option>
+                    <option value="credit_card">Credit card (automatic)</option>
+                    <option value="elec_check">Electronic check</option>
+                    <option value="mail_check">Mailed check</option>
+                </select><br/>
+            </span>
+            <input type="submit" value="Predict" class="btn"/>
+        </form>
+    </div>
+</body>
+</html>

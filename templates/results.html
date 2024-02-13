@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction for Retention Analysis</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: url('../static/images/pattern.jpg');
+            background-size: cover;
+        }
+        .navbar{
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            height: 50px;
+            background-color: #0b1d27;
+            padding: 5px;
+        }
+        .navbar a{
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            margin-right: 20px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .navbar a:hover{
+            color: #77a278;
+        }
+        .container{
+            margin: 30px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 5px;
+            background-color: white;
+        }
+        .heading{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 25px 0;
+            background-color: #77a278;
+            color: whitesmoke;
+            width: 100%;
+            padding: 10px 0;
+        }
+        .profile{
+            display: flex;
+            justify-content: space-between;
+        }
+        .profile img{
+            height: 180px;
+            width: 180px;
+            margin: 0 30px;
+        }
+        .profile p{
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px 30px;
+            font-size: medium;
+        }
+        .characteristics{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            column-gap: 20px;
+            row-gap: 20px;
+            margin: auto;
+            padding: 20px;
+        }
+        .strategies{
+            padding: 10px 30px 30px 30px;
+        }
+        .strategies li{
+            padding: 10px;
+            margin: 2px 0;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/prediction">Churn Prediction</a>
+    </nav>
+    <div class="container">
+        <div class="heading">
+            <center><h1>Results</h1></center>
+        </div>
+        <div class="profile">
+            <div class="details">
+                <p><b>Customer ID : </b>{{customerId}}</p>
+                <p><b>Churn Status: </b>{{churn_message}}</p>
+                <p><b>Time Period of Churn: </b>{{time_period}}</p>
+                <p><b>Segment Type: </b>{{segment_type}}</p>
+            </div>
+            <img src={{profile_image}} />
+        </div>
+        <div class="heading">
+            <center><h2>Customer Characteristics</h2></center>
+        </div>
+        <div class="characteristics">
+            <img src="../static/images/plot1.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot2.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot3.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot4.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot5.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot6.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot7.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot8.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot9.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot10.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot11.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot12.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot13.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot14.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot15.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot16.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot17.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot18.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot19.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot20.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot21.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot22.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot23.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot24.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot25.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot26.png" alt="Characteristic Graph"/>
+            <img src="../static/images/plot27.png" alt="Characteristic Graph"/>
+        </div>
+        <div class="heading">
+            <center><h2>Retention Strategies</h2></center>
+        </div>
+        <ul class="strategies">
+        {% for stmt in retention_strategies: %}
+        
+            <li>{{stmt}}</li>
+
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
